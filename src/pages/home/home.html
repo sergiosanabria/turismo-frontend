@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Noticia</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-title>
+        {{noticia.titulo}}
+      </ion-title>
+    </ion-row>
+    <ion-row>
+      <p style="font-style: italic;">
+        {{noticia.resumen}}
+      </p>
+    </ion-row>
+    <ion-row>
+      <ion-slides *ngIf="noticia.archivos.fotos.length" pager>
+        <ion-slide *ngFor="let img of noticia.archivos.fotos">
+          <img [src]="img.ruta" class="slide-image" style="width: 100%; height: 250px;"/>
+          <p>{{img.descripcion}}</p>
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+    <ion-row>
+      <div [innerHTML]="noticia.cuerpo">
+
+      </div>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

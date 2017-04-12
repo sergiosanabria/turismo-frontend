@@ -1,0 +1,30 @@
+import {Component} from '@angular/core';
+import {NavParams, ViewController} from 'ionic-angular';
+
+@Component({
+    selector: 'image-default-modal',
+    templateUrl: './image-default.modal.html'
+})
+export class ModalImageDefault {
+
+    srcImage: any;
+
+    ready = false;
+
+    constructor(public params: NavParams,
+                public viewCtrl: ViewController) {
+        this.srcImage = this.params.get('srcImage');
+
+    }
+
+    ngOnInit() {
+
+    }
+
+    dismiss() {
+
+        this.viewCtrl.dismiss(false);
+    }
+
+
+}

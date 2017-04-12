@@ -1,0 +1,47 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title> Lugar elegido</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-title>
+                {{lugar.titulo}}
+            </ion-title>
+        </ion-row>
+        <ion-row>
+            <p style="font-style: italic;">
+                {{lugar.resumen}}
+            </p>
+        </ion-row>
+        <ion-row>
+            <ion-slides *ngIf="lugar.archivos.fotos.length" pager>
+                <ion-slide *ngFor="let img of lugar.archivos.fotos">
+                    <img [src]="img.ruta" class="slide-image" style="width: 100%; height: 250px;"/>
+                    <p>{{img.descripcion}}</p>
+                </ion-slide>
+            </ion-slides>
+        </ion-row>
+        <ion-row>
+            <div [innerHTML]="lugar.cuerpo">
+
+            </div>
+        </ion-row>
+    </ion-grid>
+
+
+    <ion-item *ngFor="let audio of lugar.archivos.audios">
+        <ion-icon name='musical-notes' item-left style="color: #d03e84"></ion-icon>
+        <audio style="width: 100%; " src="{{audio.ruta}}" controls>
+        </audio>
+
+        <p>{{audio.descripcion}}</p>
+
+    </ion-item>
+
+
+</ion-content>

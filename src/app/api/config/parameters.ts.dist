@@ -1,0 +1,4 @@
+export const parameters: Object =
+{
+    apiUrl: "http://10.1.1.40/rismi2-2.8-rest/web/app_dev.php/api/"
+}

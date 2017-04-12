@@ -1,0 +1,27 @@
+<ion-header>
+
+    <ion-toolbar>
+        <ion-buttons start>
+            <button ion-button color="primary" (click)="dismiss(false)">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+
+        <ion-title>
+            Vista completa
+        </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <!--<img [hidden]="!ready" (load)="cargando()" [src]="srcImage" style="width: 100% !important; height: 100%;">-->
+    <img [src]="srcImage" style="
+
+    max-height: 100%;
+    position: absolute;
+    width: 100%!important;">
+
+    <!--<ion-spinner [hidden]="ready" style="font-size: 5em; top: 50%" name="bubbles" text-center></ion-spinner>-->
+</ion-content>
