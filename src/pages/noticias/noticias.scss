@@ -1,3 +1,18 @@
 page-noticias {
+  ion-card {
+    margin: 5px !important;
+    width: calc(100% - 8px) !important;
+  }
+
+  ion-item {
+    padding-left: 3px !important;
+  }
+  .item-inner {
+    margin-left: 5px !important;
+  }
+
+  ion-icon {
+    margin-right: 5px !important;
+  }
 
 }

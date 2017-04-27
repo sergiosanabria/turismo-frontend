@@ -1,0 +1,58 @@
+<!--
+  Generated template for the Atracciones page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+    <ion-searchbar [(ngModel)]="search" placeholder="Buscar atracciones"></ion-searchbar>
+    <ion-buttons *ngIf="offline" end>
+        <button ion-button icon-only (click)="updateApp()">
+            <ion-icon name="download"></ion-icon>
+        </button>
+    </ion-buttons>
+
+
+</ion-header>
+
+
+<ion-content>
+    <ion-item>
+        <ion-label>Activar modo offline</ion-label>
+        <ion-toggle (ionChange)="setOffline()" [(ngModel)]="offline"></ion-toggle>
+    </ion-item>
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col no-padding col-6 col-md-3 col-lg-4 col-xl-3
+                     *ngFor="let atraccion of (atracciones | filter:search)">
+                <ion-card (click)="presentAtraccionModal(atraccion)">
+
+                    <ion-item>
+                        <ion-icon [name]="atraccion.icono ?atraccion.icono:'home'" item-left no-padding></ion-icon>
+                        <h2>{{atraccion.titulo}}</h2>
+                        <p>{{atraccion.resumen}}</p>
+                    </ion-item>
+
+                    <img class="altura-lista" *ngIf="!offline"
+                         [src]="atraccion.archivos.fotos.length ? atraccion.archivos.fotos[0].ruta:''">
+                    <img class="altura-lista" *ngIf="offline"
+                         [default]="atraccion.archivos.fotos.length ? atraccion.archivos.fotos[0].ruta:''"
+                         [src]="atraccion.archivos.fotos.length ? atraccion.archivos.fotos[0].ruta:''">
+                </ion-card>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+    <ion-fab right bottom>
+        <button (click)="scan()" ion-fab color="primary">
+            <ion-icon name="barcode"></ion-icon>
+        </button>
+    </ion-fab>
+    <ion-fab left bottom>
+        <button (click)="openMap()" ion-fab color="danger">
+            <ion-icon name="map"></ion-icon>
+        </button>
+    </ion-fab>
+</ion-content>

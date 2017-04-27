@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title *ngIf="noticia">Noticia - {{noticia.categoria}}</ion-title>
+        <ion-title *ngIf="agenda">Agenda - {{agenda.categoria}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -9,28 +9,30 @@
         <ion-row>
             <ion-col col-10>
                 <ion-title>
-                    {{noticia.titulo}}
+                    {{agenda.titulo}}
                 </ion-title>
             </ion-col>
             <ion-col col-2 text-right>
-                <ion-icon [name]="noticia.icono ?noticia.icono:'home'"></ion-icon>
+                <ion-icon [name]="agenda.icono ?agenda.icono:'home'"></ion-icon>
             </ion-col>
         </ion-row>
         <ion-row>
             <p style="text-align: justify;">
-                {{noticia.resumen}}
+                {{agenda.resumen}}
             </p>
+            <p style="margin: 5px 0px;"><span class="negrita">Inicia</span>:{{agenda.fecha_evento_desde}}</p>
+            <p style="margin: 5px 0px;"><span class="negrita">Finaliza</span>:{{agenda.fecha_evento_hasta}}</p>
         </ion-row>
         <ion-row>
-            <ion-slides *ngIf="noticia.archivos.fotos.length" pager>
-                <ion-slide *ngFor="let img of noticia.archivos.fotos">
+            <ion-slides *ngIf="agenda.archivos.fotos.length" pager>
+                <ion-slide *ngFor="let img of agenda.archivos.fotos">
                     <img [src]="img.ruta" class="slide-image" style="width: 100%; height: 250px;"/>
                     <p style="font-size: 10px;">{{img.descripcion}}</p>
                 </ion-slide>
             </ion-slides>
         </ion-row>
         <ion-row>
-            <div [innerHTML]="noticia.cuerpo">
+            <div [innerHTML]="agenda.cuerpo">
 
             </div>
         </ion-row>

@@ -1,12 +1,3 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>Noticias</ion-title>
-    </ion-navbar>
-
-
-</ion-header>
-
-
 <ion-content>
     <ion-grid no-padding>
         <ion-row>
@@ -14,14 +5,13 @@
                 <ion-card (click)="openNoticia(noticia)">
 
                     <ion-item>
-                        <ion-avatar item-left no-padding>
-                            <img src="img/marty-avatar.png">
-                        </ion-avatar>
+                        <ion-icon [name]="noticia.icono ?noticia.icono:'home'" item-left no-padding>
+                        </ion-icon>
                         <h2>{{noticia.titulo}}</h2>
                         <p>{{noticia.resumen}}</p>
                     </ion-item>
 
-                    <img class="altura-lista"  [src]="noticia.archivos.fotos.length ? noticia.archivos.fotos[0].ruta:''">
+                    <img class="altura-lista" [src]="noticia.archivos.fotos.length ? noticia.archivos.fotos[0].ruta:''">
 
                 </ion-card>
             </ion-col>

@@ -1,21 +1,22 @@
 import {Component} from '@angular/core';
 import {NavController, ModalController} from 'ionic-angular';
-import {LugarPage} from "../lugar/lugar";
+import {AtraccionPage} from "../atraccion/atraccion";
 import {BarcodeScanner} from 'ionic-native';
 import {Api} from "../../app/api/api";
 import {Sync} from "../../app/api/sync";
+import {MapaAtraccionPage} from "../mapa-atraccion/mapa-atraccion";
 
 /*
- Generated class for the Lugares page.
+ Generated class for the Atracciones page.
 
  See http://ionicframework.com/docs/v2/components/#navigation for more info on
  Ionic pages and navigation.
  */
 @Component({
-    selector: 'page-lugares',
-    templateUrl: 'lugares.html'
+    selector: 'page-atracciones',
+    templateUrl: 'atracciones.html'
 })
-export class LugaresPage {
+export class AtraccionesPage {
 
     atracciones: any;
     endPonit = "atraccion";
@@ -66,15 +67,15 @@ export class LugaresPage {
         this.sync.getJson('atracciones').then((datas) => {
             this.atracciones = datas;
 
-            for (let lugar of this.atracciones) {
-                if (lugar.archivos.fotos.length) {
-                    for (let foto of lugar.archivos.fotos) {
+            for (let atraccion of this.atracciones) {
+                if (atraccion.archivos.fotos.length) {
+                    for (let foto of atraccion.archivos.fotos) {
                         this.getLocalFile(foto, '.jpg');
                     }
                 }
 
-                if (lugar.archivos.audios.length) {
-                    for (let audio of lugar.archivos.audios) {
+                if (atraccion.archivos.audios.length) {
+                    for (let audio of atraccion.archivos.audios) {
                         this.getLocalFile(audio, '.mp4');
                     }
                 }
@@ -87,8 +88,8 @@ export class LugaresPage {
         });
     }
 
-    presentLugarModal(lugar) {
-        this.navCtrl.push(LugarPage, {lugar: lugar});
+    presentAtraccionModal(atraccion) {
+        this.navCtrl.push(AtraccionPage, {atraccion: atraccion});
 
     }
 
@@ -126,17 +127,19 @@ export class LugaresPage {
         });
     }
 
-    getLugar(id) {
-        for (let lugar of this.atracciones) {
-            console.log(lugar.id);
-            if (id == lugar.id) {
-                this.presentLugarModal(lugar);
+    getAtraccion(id) {
+        for (let atraccion of this.atracciones) {
+            console.log(atraccion.id);
+            if (id == atraccion.id) {
+                this.presentAtraccionModal(atraccion);
             }
         }
     }
 
     scan() {
-        BarcodeScanner.scan().then(
+        BarcodeScanner.scan({
+            resultDisplayDuration: 0
+        }).then(
             (barcodeData) => {
 
 
@@ -144,10 +147,16 @@ export class LugaresPage {
 
                 if (!barcodeData.cancelled) {
 
-                    this.getLugar(barcodeData.text);
+                    this.getAtraccion(barcodeData.text);
                 }
             }
         );
+    }
+
+    openMap() {
+        this.navCtrl.push(MapaAtraccionPage, {
+            atracciones: this.atracciones
+        })
     }
 
 

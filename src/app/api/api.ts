@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, RequestOptions, URLSearchParams, ResponseContentType} from '@angular/http';
+import {Http, RequestOptions, URLSearchParams} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /**
@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
  */
 @Injectable()
 export class Api {
-  url: string = 'http://192.168.0.117/turismo-backend/web/app_dev.php/api';
+  url: string = 'http://192.168.10.117/turismo-backend/web/app_dev.php/api';
 
   constructor(public http: Http) {
   }

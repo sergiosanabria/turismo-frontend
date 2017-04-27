@@ -5,46 +5,74 @@ import {AboutPage} from '../pages/about/about';
 import {HomePage} from '../pages/home/home';
 import {TabsPage} from '../pages/tabs/tabs';
 import {Api} from "./api/api";
-import {LugaresPage} from "../pages/lugares/lugares";
+import {AtraccionesPage} from "../pages/atracciones/atracciones";
 import {Sync} from "./api/sync";
 import {DefaultImageDirective} from "../directives/img/image-default.directive";
-import {LugarPage} from "../pages/lugar/lugar";
+import {AtraccionPage} from "../pages/atraccion/atraccion";
 import {NoticiasPage} from "../pages/noticias/noticias";
 import {NoticiaPage} from "../pages/noticia/noticia";
 import {Filter} from "../pipes/filter";
+import {DatePickerModule} from 'datepicker-ionic2';
+import {AgendasPage} from "../pages/agendas/agendas";
+import {BetweenDate} from "../pipes/between-date";
+import {AgendaPage} from "../pages/agenda/agenda";
+import {MapService} from "../directives/map/map.service";
+import {GeocodingService} from "../directives/map/geocode.service";
+import {GeosearchComponent} from "../directives/map/geosearch.component";
+import {MapComponent} from "../directives/map/map.component";
+import {MapaAtraccionPage} from "../pages/mapa-atraccion/mapa-atraccion";
+import { Geolocation } from '@ionic-native/geolocation';
+import {RutaPage} from "../pages/ruta/ruta";
 
 
 @NgModule({
     declarations: [
         MyApp,
+        MapComponent,
+        GeosearchComponent,
         AboutPage,
         HomePage,
         TabsPage,
-        LugaresPage,
-        LugarPage,
+        AtraccionesPage,
+        AtraccionPage,
+        MapaAtraccionPage,
         NoticiasPage,
         NoticiaPage,
+        AgendasPage,
+        AgendaPage,
         DefaultImageDirective,
-        Filter
+        RutaPage,
+        Filter,
+        BetweenDate
     ],
     imports: [
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        DatePickerModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
+        MapComponent,
+        GeosearchComponent,
         AboutPage,
         HomePage,
         TabsPage,
-        LugarPage,
-        LugaresPage,
+        AtraccionPage,
+        AtraccionesPage,
+        MapaAtraccionPage,
         NoticiasPage,
-        NoticiaPage
+        NoticiaPage,
+        AgendasPage,
+        AgendaPage,
+        RutaPage
 
     ],
     providers: [
         Api,
         Sync,
+        GeocodingService,
+        Geolocation,
+        MapService,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

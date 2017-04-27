@@ -1,31 +1,32 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Agendas</ion-title>
-  </ion-navbar>
-
-
-</ion-header>
-
-
 <ion-content>
-  <ion-grid no-padding>
-    <ion-row>
-      <ion-col no-padding col-6 col-md-3 col-lg-4 col-xl-3 *ngFor="let agenda of agendas">
-        <ion-card (click)="openagenda(agenda)">
 
-          <ion-item>
-            <ion-avatar item-left no-padding>
-              <img src="img/marty-avatar.png">
-            </ion-avatar>
-            <h2>{{agenda.titulo}}</h2>
-            <p>{{agenda.resumen}}</p>
-          </ion-item>
 
-          <img class="altura-lista"  [src]="agenda.archivos.fotos.length ? agenda.archivos.fotos[0].ruta:''">
+    <ion-grid no-padding>
 
-        </ion-card>
-      </ion-col>
 
-    </ion-row>
-  </ion-grid>
+        <ion-row>
+            <button ion-button block primary ion-datepicker (ionChanged)="setDate($event);" [value]="fecha"
+                    [min]="hoy" full="true" [locale]="pt-BR"
+                    calendar="true" clear class="ScheduleDate">
+                {{fecha | date}}
+                <ion-icon name="clipboard" item-left></ion-icon>
+            </button>
+        </ion-row>
+        <ion-row>
+            <ion-col no-padding col-6 col-md-3 col-lg-4 col-xl-3 *ngFor="let agenda of (agendas | betweendate: fecha)">
+                <ion-card (click)="open(agenda)">
+
+                    <ion-item>
+                        <ion-icon [name]="agenda.icono ?agenda.icono:'home'" item-left no-padding></ion-icon>
+                        <h2>{{agenda.titulo}}</h2>
+                        <p>{{agenda.resumen}}</p>
+                    </ion-item>
+
+                    <img class="altura-lista" [src]="agenda.archivos.fotos.length ? agenda.archivos.fotos[0].ruta:''">
+
+                </ion-card>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
 </ion-content>

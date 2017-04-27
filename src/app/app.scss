@@ -29,3 +29,23 @@
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
   /* Styles */
 }
+
+.negrita {
+  font-weight: bold;
+}
+
+.angular-leaflet-map {
+  height: 100%;
+}
+
+.leaflet-bottom.leaflet-right {
+  display: none;
+}
+
+.g-maps {
+  color: color($colors, danger) !important;
+}
+
+.leaflet {
+  color: color($colors, secondary) !important;
+}

@@ -15,7 +15,7 @@ export class NoticiasPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public api: Api) {
     }
 
-    ionViewDidEnter() {
+    ngOnInit() {
         this.api.get(this.endPonit).subscribe((data) => {
             this.noticias = data.json();
         });
@@ -23,7 +23,6 @@ export class NoticiasPage {
 
     openNoticia(noticia) {
         this.navCtrl.push(NoticiaPage, {noticia: noticia});
-
     }
 
 }

@@ -1,4 +1,4 @@
-page-agendas {
+page-atracciones {
   ion-card {
     margin: 5px !important;
     width: calc(100% - 8px) !important;
@@ -14,20 +14,4 @@ page-agendas {
   ion-icon {
     margin-right: 5px !important;
   }
-
-}
-
-.calendar-row {
-  .col {
-    text-align: center !important;
-  }
-}
-.datepicker-calendar{
-  .col{
-    display: inline-block;
-  }
-}
-.calendar-row {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
 }
