@@ -1,21 +1,11 @@
 <ion-content>
-    <ion-grid no-padding>
-        <ion-row>
-            <ion-col no-padding col-6 col-md-3 col-lg-4 col-xl-3 *ngFor="let noticia of noticias">
-                <ion-card (click)="openNoticia(noticia)">
-
-                    <ion-item>
-                        <ion-icon [name]="noticia.icono ?noticia.icono:'home'" item-left no-padding>
-                        </ion-icon>
-                        <h2>{{noticia.titulo}}</h2>
-                        <p>{{noticia.resumen}}</p>
-                    </ion-item>
-
-                    <img class="altura-lista" [src]="noticia.archivos.fotos.length ? noticia.archivos.fotos[0].ruta:''">
-
-                </ion-card>
-            </ion-col>
-
-        </ion-row>
-    </ion-grid>
+    <ion-list>
+        <ion-item *ngFor="let noticia of noticias" (click)="openNoticia(noticia)">
+            <ion-thumbnail item-left>
+                <img class="altura-lista" [src]="noticia.archivos.fotos.length ? noticia.archivos.fotos[0].ruta:''">
+            </ion-thumbnail>
+            <h2>{{noticia.titulo}}</h2>
+            <p>{{noticia.resumen}}</p>
+        </ion-item>
+    </ion-list>
 </ion-content>

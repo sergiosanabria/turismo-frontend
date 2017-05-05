@@ -38,4 +38,13 @@ export class AgendasPage {
         this.navCtrl.push(AgendaPage, {agenda: agenda});
     }
 
+    upDownDate(op) {
+        if (op == '+') {
+            this.fecha = new Date(this.fecha.getTime() + 24 * 60 * 60 * 1000);
+
+        } else {
+            this.fecha = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        }
+    }
+
 }

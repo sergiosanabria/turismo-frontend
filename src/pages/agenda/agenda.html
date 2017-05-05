@@ -20,8 +20,7 @@
             <p style="text-align: justify;">
                 {{agenda.resumen}}
             </p>
-            <p style="margin: 5px 0px;"><span class="negrita">Inicia</span>:{{agenda.fecha_evento_desde}}</p>
-            <p style="margin: 5px 0px;"><span class="negrita">Finaliza</span>:{{agenda.fecha_evento_hasta}}</p>
+
         </ion-row>
         <ion-row>
             <ion-slides *ngIf="agenda.archivos.fotos.length" pager>
@@ -35,6 +34,44 @@
             <div [innerHTML]="agenda.cuerpo">
 
             </div>
+        </ion-row>
+
+        <ion-row text-center>
+            <ion-col no-padding>
+                <h3>
+                    Acá está!
+                </h3>
+                <div *ngIf="agenda.direccion_mapa" style="margin: 5px 0px;"><span class="negrita">En</span>:
+                    {{agenda.direccion_mapa}}
+                </div>
+                <div style="margin: 5px 0px;"><span class="negrita">Inicia</span>: {{agenda.fecha_evento_desde}}</div>
+                <div style="margin: 5px 0px;"><span class="negrita">Finaliza</span>: {{agenda.fecha_evento_hasta}}</div>
+                <div #contenedorMapaAgenda>
+
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row text-center>
+            <ion-col no-padding>
+                <button ion-button primary (click)="comoLlegar()">
+                    ¿Cómo llegar?
+                </button>
+            </ion-col>
+            <ion-col no-padding>
+                <button *ngIf="!existeEvento" danger ion-button primary (click)="crearEvento()">
+                    Crear evento
+                </button>
+                <button *ngIf="existeEvento" [disabled]="existeEvento" danger ion-button primary
+                        (click)="crearEvento()">
+                    Ya se ha creado un evento
+                </button>
+            </ion-col>
+
+        </ion-row>
+        <ion-row text-center>
+
+
         </ion-row>
     </ion-grid>
 

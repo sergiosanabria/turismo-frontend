@@ -76,7 +76,7 @@ export class MapaAtraccionPage {
     }
 
 
-    ngOnInit() {
+    ionViewDidEnter() {
 
         console.log('MapaEmpresaComponent');
 

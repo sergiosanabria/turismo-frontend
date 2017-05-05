@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {Transfer, Network} from "ionic-native";
 import {Platform, AlertController} from "ionic-angular";
 import {File} from '@ionic-native/file';
 import {NativeStorage} from '@ionic-native/native-storage';
+import {TransferObject, Transfer} from "@ionic-native/transfer";
 
 /*
  Generated class for the Sync provider.
@@ -23,6 +23,7 @@ export class Sync {
 
     constructor(public http: Http,
                 public platform: Platform,
+                private transfer: Transfer,
                 public alertCtrl: AlertController) {
         console.log('Hello Sync Provider');
         this.platform.ready().then(() => {
@@ -90,7 +91,7 @@ export class Sync {
             this.download(url, fileName, ext);
         });
     }
-
+/*
 
     downloadImage(image) {
 
@@ -123,7 +124,7 @@ export class Sync {
 
         });
 
-    }
+    }*/
 
     getLocalDir(name, ext) {
 
@@ -136,7 +137,9 @@ export class Sync {
 
         this.platform.ready().then(() => {
 
-            const fileTransfer = new Transfer();
+            const fileTransfer: TransferObject = this.transfer.create();
+
+
             // const imageLocation = `${cordova.file.applicationDirectory}www/assets/img/${image}`;
 
 

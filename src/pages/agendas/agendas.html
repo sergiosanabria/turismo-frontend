@@ -5,12 +5,29 @@
 
 
         <ion-row>
-            <button ion-button block primary ion-datepicker (ionChanged)="setDate($event);" [value]="fecha"
-                    [min]="hoy" full="true" [locale]="pt-BR"
-                    calendar="true" clear class="ScheduleDate">
-                {{fecha | date}}
-                <ion-icon name="clipboard" item-left></ion-icon>
-            </button>
+
+            <ion-col col-3 text-right>
+                <button (click)="upDownDate('-')" ion-button icon-only>
+                    <ion-icon name="arrow-dropleft">
+
+                    </ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button block primary ion-datepicker (ionChanged)="setDate($event);" [value]="fecha"
+                        [min]="hoy" full="true" [locale]="pt-BR"
+                        calendar="true" clear class="ScheduleDate">
+                    {{fecha | date}}
+                    <ion-icon name="clipboard" item-left></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-3>
+                <button (click)="upDownDate('+')" ion-button icon-only text-left>
+                    <ion-icon name="arrow-dropright">
+
+                    </ion-icon>
+                </button>
+            </ion-col>
         </ion-row>
         <ion-row>
             <ion-col no-padding col-6 col-md-3 col-lg-4 col-xl-3 *ngFor="let agenda of (agendas | betweendate: fecha)">

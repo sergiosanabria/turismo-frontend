@@ -6,13 +6,15 @@
 -->
 <ion-header>
 
+    <ion-navbar>
 
-    <ion-searchbar [(ngModel)]="search" placeholder="Buscar atracciones"></ion-searchbar>
-    <ion-buttons *ngIf="offline" end>
-        <button ion-button icon-only (click)="updateApp()">
-            <ion-icon name="download"></ion-icon>
-        </button>
-    </ion-buttons>
+        <ion-searchbar [(ngModel)]="search" placeholder="Buscar atracciones"></ion-searchbar>
+        <ion-buttons *ngIf="offline" end>
+            <button ion-button icon-only (click)="updateApp()">
+                <ion-icon name="download"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 
 
 </ion-header>

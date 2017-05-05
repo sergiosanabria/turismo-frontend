@@ -16,9 +16,7 @@ export class MapService {
 
     constructor() {
         this.baseMaps = {
-            OpenStreetMap: new L.TileLayer("http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
-            })
+            MapBox: new L.TileLayer("https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2VyZ2lvc2FuYWJyaWEiLCJhIjoiY2oyMXVrOGZvMDAwMjMycGNrODltb2J3ciJ9.VMWOMgix8djMTesRJMDHVg")
         };
     }
 
@@ -35,7 +33,7 @@ export class MapService {
             zoom: 14,
             minZoom: 4,
             maxZoom: 18,
-            layers: [this.baseMaps.OpenStreetMap]
+            layers: [this.baseMaps.MapBox]
         });
         L.control.zoom({position: 'topright'}).addTo(this.map);
         // L.control.layers(this.baseMaps).addTo(this.map);

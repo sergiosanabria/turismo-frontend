@@ -21,8 +21,11 @@ import {GeocodingService} from "../directives/map/geocode.service";
 import {GeosearchComponent} from "../directives/map/geosearch.component";
 import {MapComponent} from "../directives/map/map.component";
 import {MapaAtraccionPage} from "../pages/mapa-atraccion/mapa-atraccion";
-import { Geolocation } from '@ionic-native/geolocation';
+import {Geolocation} from '@ionic-native/geolocation';
 import {RutaPage} from "../pages/ruta/ruta";
+import {Calendar} from "@ionic-native/calendar";
+import {Transfer} from "@ionic-native/transfer";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 
 @NgModule({
@@ -72,7 +75,10 @@ import {RutaPage} from "../pages/ruta/ruta";
         Sync,
         GeocodingService,
         Geolocation,
+        Calendar,
         MapService,
+        Transfer,
+        SocialSharing,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

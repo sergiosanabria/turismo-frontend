@@ -7,6 +7,7 @@ import {GeocodingService} from "../../directives/map/geocode.service";
 import {MapService} from "../../directives/map/map.service";
 import {Geolocation} from '@ionic-native/geolocation';
 import {RutaPage} from "../ruta/ruta";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 
 @Component({
@@ -27,14 +28,18 @@ export class AtraccionPage {
                 public toastCtrl: ToastController,
                 public loadingCtrl: LoadingController,
                 public actionSheetCtrl: ActionSheetController,
+                private socialSharing: SocialSharing,
                 public geocoder: GeocodingService) {
         this.atraccion = params.get('atraccion');
 
     }
 
 
-    ngOnInit() {
+    ionViewDidEnter() {
         console.log('Hello AtraccionPage Page');
+        if (!this.atraccion.direccion_mapa) {
+            return false;
+        }
         let location = this.geocoder.geocode(this.atraccion.direccion_mapa);
 
         location.subscribe(location => {
@@ -81,6 +86,21 @@ export class AtraccionPage {
             ]
         });
         actionSheet.present();
+    }
+
+    share() {
+        this.socialSharing.share(this.atraccion.titulo, this.atraccion.resumen, this.atraccion.archivos.fotos.length ? this.atraccion.archivos.fotos[0] : '').then(() => {
+            let toast = this.toastCtrl.create({
+                message: "Compartiendo...",
+                duration: 1500,
+                position: 'center'
+            });
+
+            toast.present(toast);
+
+        }).catch(() => {
+            // Error!
+        });
     }
 
     gMaps() {

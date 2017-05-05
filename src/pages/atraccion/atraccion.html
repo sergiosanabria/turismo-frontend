@@ -36,13 +36,14 @@
 
             </div>
         </ion-row>
-
-
         <ion-row text-center>
             <ion-col no-padding>
                 <h3>
                     Acá está!
                 </h3>
+                <div *ngIf="atraccion.direccion_mapa" style="margin: 5px 0px;"><span class="negrita">En</span>:
+                    {{atraccion.direccion_mapa}}
+                </div>
                 <div #contenedorMapaAtraccion>
 
                 </div>
@@ -55,6 +56,11 @@
                     ¿Cómo llegar?
                 </button>
             </ion-col>
+            <ion-col no-padding>
+                <button block ion-button primary (click)="share()">
+                    Compartir
+                </button>
+            </ion-col>
         </ion-row>
     </ion-grid>
 
@@ -63,6 +69,15 @@
         <ion-icon name='musical-notes' item-left style="color: #d03e84"></ion-icon>
         <audio style="width: 100%; " src="{{audio.ruta}}" controls>
         </audio>
+
+        <p>{{audio.descripcion}}</p>
+
+    </ion-item>
+
+    <ion-item *ngFor="let audio of atraccion.archivos.videos">
+        <ion-icon name='musical-notes' item-left style="color: #d03e84"></ion-icon>
+        <video style="width: 100%; " src="{{audio.ruta}}" controls>
+        </video>
 
         <p>{{audio.descripcion}}</p>
 
