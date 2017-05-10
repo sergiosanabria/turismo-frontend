@@ -26,6 +26,7 @@ import {RutaPage} from "../pages/ruta/ruta";
 import {Calendar} from "@ionic-native/calendar";
 import {Transfer} from "@ionic-native/transfer";
 import {SocialSharing} from "@ionic-native/social-sharing";
+import {TextToSpeech} from "@ionic-native/text-to-speech";
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import {SocialSharing} from "@ionic-native/social-sharing";
         MapService,
         Transfer,
         SocialSharing,
+        TextToSpeech,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

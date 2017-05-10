@@ -8,7 +8,7 @@ import {MapService} from "../../directives/map/map.service";
 import {Geolocation} from '@ionic-native/geolocation';
 import {RutaPage} from "../ruta/ruta";
 import {SocialSharing} from "@ionic-native/social-sharing";
-
+import {TextToSpeech} from '@ionic-native/text-to-speech';
 
 @Component({
     selector: 'page-atraccion',
@@ -29,6 +29,7 @@ export class AtraccionPage {
                 public loadingCtrl: LoadingController,
                 public actionSheetCtrl: ActionSheetController,
                 private socialSharing: SocialSharing,
+                private tts: TextToSpeech,
                 public geocoder: GeocodingService) {
         this.atraccion = params.get('atraccion');
 
@@ -86,6 +87,13 @@ export class AtraccionPage {
             ]
         });
         actionSheet.present();
+    }
+
+    speak() {
+        this.tts.speak({
+            text: this.atraccion.cuerpo,
+            locale: 'es-AR'
+        });
     }
 
     share() {

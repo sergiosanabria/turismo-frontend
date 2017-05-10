@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
  */
 @Injectable()
 export class Api {
-  url: string = 'http://192.168.43.217/turismo-backend/web/app_dev.php/api';
+  url: string = 'http://192.168.0.115/turismo-backend/web/app_dev.php/api';
 
   constructor(public http: Http) {
   }
