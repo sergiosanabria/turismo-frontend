@@ -27,6 +27,7 @@ import {Calendar} from "@ionic-native/calendar";
 import {Transfer} from "@ionic-native/transfer";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {TextToSpeech} from "@ionic-native/text-to-speech";
+import {ApiTranslate} from "./api/api-translate";
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import {TextToSpeech} from "@ionic-native/text-to-speech";
     ],
     providers: [
         Api,
+        ApiTranslate,
         Sync,
         GeocodingService,
         Geolocation,

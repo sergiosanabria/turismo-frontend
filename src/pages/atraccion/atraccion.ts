@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {
-    ActionSheetController, LoadingController, NavController, NavParams, Select, ToastController,
+    ActionSheetController, AlertController, LoadingController, NavController, NavParams, Select, ToastController,
     ViewController
 } from 'ionic-angular';
 import {GeocodingService} from "../../directives/map/geocode.service";
@@ -9,6 +9,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {RutaPage} from "../ruta/ruta";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {TextToSpeech} from '@ionic-native/text-to-speech';
+import {ApiTranslate} from "../../app/api/api-translate";
 
 @Component({
     selector: 'page-atraccion',
@@ -19,10 +20,15 @@ export class AtraccionPage {
     @ViewChild('contenedorMapaAtraccion') contenedorMapa: ElementRef;
     atraccion: any;
     map: any;
+    played = false;
+    playedTranslate = false;
+
+    textToSpeak = '';
 
     constructor(public navCtrl: NavController,
                 params: NavParams,
                 public viewCtrl: ViewController,
+                public alertCtrl:AlertController,
                 public mapservice: MapService,
                 private geolocation: Geolocation,
                 public toastCtrl: ToastController,
@@ -30,8 +36,11 @@ export class AtraccionPage {
                 public actionSheetCtrl: ActionSheetController,
                 private socialSharing: SocialSharing,
                 private tts: TextToSpeech,
+                private apiTranslate: ApiTranslate,
                 public geocoder: GeocodingService) {
         this.atraccion = params.get('atraccion');
+        this.textToSpeak = this.removeDiacritics(this.atraccion.cuerpo.replace(/(<([^>]+)>)/ig, ""));
+
 
     }
 
@@ -90,10 +99,82 @@ export class AtraccionPage {
     }
 
     speak() {
-        this.tts.speak({
-            text: this.atraccion.cuerpo,
-            locale: 'es-AR'
-        });
+        if (!this.played) {
+            this.played = true;
+            this.tts.speak({
+                text: this.textToSpeak,
+                locale: 'es-AR'
+            }).then((data) => {
+                console.log(data)
+            });
+        } else {
+            this.tts.speak({
+                text: '',
+                locale: 'es-AR'
+            }).then((data) => {
+                console.log(data)
+            });
+            this.played = false;
+        }
+
+    }
+
+    speackTranslate() {
+
+        this.apiTranslate.post(this.textToSpeak, 'es', 'it')
+            .then((response) => {
+                let text = response.json().text;
+                let alert = this.alertCtrl.create({
+                    title: 'Texto traducido',
+                    subTitle: text,
+                    buttons: ['OK']
+                });
+                alert.present();
+                if (!this.playedTranslate) {
+                    this.playedTranslate = true;
+                    this.tts.speak({
+                        text: text,
+                        locale: 'it-IT'
+                    }).then((data) => {
+                        console.log(data)
+                    });
+                } else {
+                    this.tts.speak({
+                        text: '',
+                        locale: 'en-US'
+                    }).then((data) => {
+                        console.log(data)
+                    });
+                    this.playedTranslate = false;
+                }
+            });
+
+
+    }
+
+    removeDiacritics(str) {
+
+        var rp = String(str);
+        //
+        rp = rp.replace(/&aacute;/g, 'á');
+        rp = rp.replace(/&eacute;/g, 'é');
+        rp = rp.replace(/&iacute;/g, 'í');
+        rp = rp.replace(/&oacute;/g, 'ó');
+        rp = rp.replace(/&uacute;/g, 'ú');
+        rp = rp.replace(/&ntilde;/g, 'ñ');
+        rp = rp.replace(/&uuml;/g, 'ü');
+        //
+        rp = rp.replace(/&Aacute;/g, 'Á');
+        rp = rp.replace(/&Eacute;/g, 'É');
+        rp = rp.replace(/&Iacute;/g, 'Í');
+        rp = rp.replace(/&Oacute;/g, 'Ó');
+        rp = rp.replace(/&Uacute;/g, 'Ú');
+        rp = rp.replace(/&Ntilde;/g, 'Ñ');
+        rp = rp.replace(/&Uuml;/g, 'Ü');
+        rp = rp.replace(/&nbsp;/g, '');
+        //
+        return rp;
+
     }
 
     share() {
@@ -194,8 +275,6 @@ export class AtraccionPage {
     }
 
     leaflet() {
-
-        console.log("leaflet");
 
         if (!this.atraccion.direccion_mapa) {
             let toast = this.toastCtrl.create({

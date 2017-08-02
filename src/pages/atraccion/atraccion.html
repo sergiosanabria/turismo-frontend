@@ -36,11 +36,6 @@
 
             </div>
         </ion-row>
-        <ion-row>
-            <button ion-button (click)="speak()">
-                speak
-            </button>
-        </ion-row>
         <ion-row text-center>
             <ion-col no-padding>
                 <h3>
@@ -87,6 +82,19 @@
         <p>{{audio.descripcion}}</p>
 
     </ion-item>
+
+    <ion-fab right bottom>
+        <button (click)="speak()" ion-fab color="primary">
+            <ion-icon *ngIf="!played" name="play"></ion-icon>
+            <ion-icon *ngIf="played" name="square"></ion-icon>
+        </button>
+    </ion-fab>
+    <ion-fab left bottom>
+        <button (click)="speackTranslate()" ion-fab color="danger">
+            <ion-icon *ngIf="!playedTranslate" name="play"></ion-icon>
+            <ion-icon *ngIf="playedTranslate" name="square"></ion-icon>
+        </button>
+    </ion-fab>
 
 
 </ion-content>

@@ -5,7 +5,6 @@ import {GeocodingService} from "../../directives/map/geocode.service";
 import {MainService} from "../../app/main.service";
 import {BrowserDomAdapter} from "@angular/platform-browser/src/browser/browser_adapter";
 import {Geolocation} from 'ionic-native';
-import {EmpresaPerfilPage} from "../empresaPerfil/empresaPerfil";
 import {AtraccionPage} from "../atraccion/atraccion";
 var utils = require('util');
 

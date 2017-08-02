@@ -84,7 +84,7 @@ export class AgendaPage {
     crearEvento() {
 
 
-        this.calendar.createEvent(this.agenda.titulo, this.latlong, this.agenda.resumen, new Date(this.agenda.fecha_evento_rango.desde), new Date(this.agenda.fecha_evento_rango.hasta))
+        this.calendar.createEvent(this.agenda.titulo, this.latlong, this.agenda.resumen, new Date(this.agenda.fecha_evento_rango.desde), new Date(this.agenda.fechaEventoFin))
             .then((ev) => {
                 let toast = this.toastCtrl.create({
                     message: "Evento creado",
